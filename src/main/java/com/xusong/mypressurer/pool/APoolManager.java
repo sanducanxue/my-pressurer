@@ -1,19 +1,11 @@
 package com.xusong.mypressurer.pool;
 import com.xusong.mypressurer.bean.RequestParam;
-import com.xusong.mypressurer.test_case.BaiduCase;
 import com.xusong.mypressurer.test_case.Case;
 import com.xusong.mypressurer.util.LogUtil;
-
 /**
  * A型  并发数与线程数不绑定
  */
 public class APoolManager extends DefaultPoolManager{
-    public static void main(String[] args) {
-        APoolManager aPoolManager = new APoolManager();
-        BaiduCase baiduCase = new BaiduCase();
-        baiduCase.setRequestParam();
-        aPoolManager.execute(baiduCase);
-    }
 
     @Override
     public void execute(Case testCase) {
@@ -40,5 +32,11 @@ public class APoolManager extends DefaultPoolManager{
                 e.printStackTrace();
             }
         }
+    }
+
+    public APoolManager(int threadNums) {
+        initPool(threadNums);
+    }
+    public APoolManager() {
     }
 }

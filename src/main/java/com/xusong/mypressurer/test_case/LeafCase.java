@@ -15,8 +15,6 @@ public abstract class LeafCase extends Case{
             boolean result = httpNet.doGet(requestParam);
             long end = System.currentTimeMillis();
             long time = end -start;
-
-            //System.out.println("resut: " + result  + " time " + time);
             LogUtil.addTotalTimes();
             if (result){
                 //请求成

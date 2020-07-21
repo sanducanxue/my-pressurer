@@ -22,6 +22,10 @@ public abstract class Case implements Runnable {
     public RequestParam getRequestParam() {
         return requestParam;
     }
+
+    public Case() {
+        setRequestParam();
+    }
     /**
      * 设置请求参数
      */

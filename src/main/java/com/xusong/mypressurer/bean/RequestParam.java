@@ -3,6 +3,9 @@ package com.xusong.mypressurer.bean;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 请求参数
+ */
 public class RequestParam {
     public static final String GET = "GET";
     public static final String POST = "POST";

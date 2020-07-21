@@ -3,9 +3,9 @@ package com.xusong.mypressurer.util;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class LogUtil {
-
     //总共执行的次数
     public static AtomicInteger totalTimes = new AtomicInteger(0);
     //成功执行的次数
@@ -43,26 +43,22 @@ public class LogUtil {
         double success = (double) successTimes.get();
         double total = (double) totalTimes.get();
         //成功比例
-        double successRate = success / total;
+        int successRate = (int) ((success / total) *100);
         int size = runTimeList.size();
-        //List<Long> sortList = runTimeList.stream().sorted().collect(Collectors.toList());
+        List<Long> sortList = runTimeList.stream().sorted().collect(Collectors.toList());
         int position95 = (int) (size * 0.95);
         //排名第百分之九十五的请求 耗时
-        // Long time95 = sortList.get(position95);
+         Long time95 = sortList.get(position95);
         long sum = runTimeList.stream().mapToLong(Long::longValue).sum();
         //平均时间
         long averageTime = sum / size;
-//        System.out.println("成功比例：" + successRate + "  平均耗时：" + averageTime + "  耗时排名95%的请求耗时：");
-        System.out.println("totalTimes：" + totalTimes + "  successTimes：" + successTimes + "  errorTimes：" + errorTimes +
-                " 平均耗时: " + averageTime);
+        System.out.println("成功比例：" + successRate + "%  平均耗时：" + averageTime + "  耗时排名95%的请求耗时：" + time95);
+        //System.out.println("totalTimes：" + totalTimes + "  successTimes：" + successTimes + "  errorTimes：" + errorTimes +
+         //       " 平均耗时: " + averageTime);
         //清理
-        //cleanTimes();
+        cleanTimes();
     }
-    public static boolean check(){
-        if (totalTimes.get() != 0 &&successTimes.get() != 0 &&runTimeList.size() != 0){
-            return true;
-        }else {
-            return false;
-        }
+    private static boolean check(){
+        return totalTimes.get() != 0 && successTimes.get() != 0 && runTimeList.size() != 0;
     }
 }
