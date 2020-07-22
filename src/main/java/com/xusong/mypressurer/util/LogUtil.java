@@ -5,6 +5,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+/**
+ * 性能指标 收集打印工具类
+ */
 public class LogUtil {
     //总共执行的次数
     public static AtomicInteger totalTimes = new AtomicInteger(0);
@@ -52,11 +55,11 @@ public class LogUtil {
         long sum = runTimeList.stream().mapToLong(Long::longValue).sum();
         //平均时间
         long averageTime = sum / size;
-        System.out.println("成功比例：" + successRate + "%  平均耗时：" + averageTime + "  耗时排名95%的请求耗时：" + time95);
+        System.out.println("totalTimes:" + totalTimes + " |successTimes：" + successTimes + "  |errorTimes：" + errorTimes +" |成功比例：" + successRate + "%  |平均耗时：" + averageTime + "  |耗时排名95%的请求耗时：" + time95);
         //System.out.println("totalTimes：" + totalTimes + "  successTimes：" + successTimes + "  errorTimes：" + errorTimes +
          //       " 平均耗时: " + averageTime);
         //清理
-        cleanTimes();
+        //cleanTimes();
     }
     private static boolean check(){
         return totalTimes.get() != 0 && successTimes.get() != 0 && runTimeList.size() != 0;

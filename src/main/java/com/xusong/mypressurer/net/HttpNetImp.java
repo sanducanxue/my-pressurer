@@ -1,5 +1,6 @@
 package com.xusong.mypressurer.net;
 
+import com.xusong.mypressurer.PressurerMain;
 import com.xusong.mypressurer.bean.RequestParam;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -42,7 +43,7 @@ public class HttpNetImp implements HttpNet {
             // 创建http GET请求
             HttpGet httpGet = new HttpGet(uri);
             //设置超时时间为2秒
-            RequestConfig requestConfig =  RequestConfig.custom().setSocketTimeout(2000).setConnectTimeout(2000).build();
+            RequestConfig requestConfig =  RequestConfig.custom().setSocketTimeout(PressurerMain.timeOut).setConnectTimeout(PressurerMain.timeOut).build();
             httpGet.setConfig(requestConfig);
 
             // 执行http get请求

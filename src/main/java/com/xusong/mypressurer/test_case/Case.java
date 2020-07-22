@@ -12,8 +12,6 @@ import com.xusong.mypressurer.net.HttpNetImp;
  * 叶子节点LeafCase 容器节点可以继续向下组合叶子节点
  */
 public abstract class Case implements Runnable {
-
-
     //请求参数
     RequestParam requestParam;
 
@@ -22,12 +20,4 @@ public abstract class Case implements Runnable {
     public RequestParam getRequestParam() {
         return requestParam;
     }
-
-    public Case() {
-        setRequestParam();
-    }
-    /**
-     * 设置请求参数
-     */
-    public abstract void setRequestParam();
 }

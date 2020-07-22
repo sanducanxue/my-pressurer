@@ -1,4 +1,5 @@
 package com.xusong.mypressurer.pool;
+import com.xusong.mypressurer.PressurerMain;
 import com.xusong.mypressurer.bean.RequestParam;
 import com.xusong.mypressurer.test_case.Case;
 import com.xusong.mypressurer.util.LogUtil;
@@ -17,7 +18,7 @@ public class APoolManager extends DefaultPoolManager{
         //执行总次数
         int totalNums = requestParam.getTotalNums();
 
-        while (true){
+        while (currenttimes<=totalNums){
             //模拟并发次数
             for (int i = 0; i < concurrentNums; i++) {
                 pool.execute(testCase);
@@ -26,12 +27,14 @@ public class APoolManager extends DefaultPoolManager{
             }
             try {
                 //打印日志
-                Thread.sleep(3000);
+                Thread.sleep(PressurerMain.sleepTime);
                 LogUtil.print();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+        pool.shutdown();
+        System.out.println("=======>>>>>>>>测试结束<<<<<<<<========");
     }
 
     public APoolManager(int threadNums) {
